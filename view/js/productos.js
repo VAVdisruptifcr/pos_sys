@@ -13,8 +13,12 @@ CARGAR LA TABLA DINÁMICA DE PRODUCTOS
 
 // })
 
+var perfilOculto = $("#perfilOculto").val();
+
+console.log("perfilOculto", perfilOculto);
+
 var table = $('.tablaProductos').DataTable( {
-    "ajax": "ajax/datatable-productos.ajax.php",
+    "ajax": "ajax/datatable-productos.ajax.php?perfiloculto="+perfilOculto,
     "deferRender": true,
 	"retrieve": true,
 	"processing": true,

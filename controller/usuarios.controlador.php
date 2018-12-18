@@ -67,7 +67,8 @@ class ControladorUsuarios{
 				
 				}else{
 
-					echo '<br><div class="alert alert-danger">Error al ingresar, revisa tus datos y vuelve a intentarlo!</div>';
+					echo '<br>
+					<div class="alert alert-danger">Error al ingresar, revisa tus datos y vuelve a intentarlo!</div>';
 				}
 
 			}

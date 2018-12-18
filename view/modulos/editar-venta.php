@@ -8,7 +8,7 @@
     <ol class="breadcrumb">
 
       <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
-      <li class="active">Crear nueva venta</li>
+      <li class="active">Editar venta </li>
 
     </ol>
 
@@ -135,25 +135,24 @@
 
                 <?php
 
-               $listaProducto = json_decode($venta["productos"], true);
+                $listaProducto = json_decode($venta["productos"], true);
 
-               foreach ($listaProducto as $key => $value) {
+                foreach ($listaProducto as $key => $value) {
 
-                $item = "id";
-                $valor = $value["id"];
+                  $item = "id";
+                  $valor = $value["id"];
+                  $orden = "$id";
 
-                $respuesta = ControladorProductos::ctrMostrarProductos($item, $valor);
+                  $respuesta = ControladorProductos::ctrMostrarProductos($item, $valor, $orden);
 
-                $stockAntiguo = $respuesta["stock"] + $value["cantidad"];
-
-                echo '<div class="row" style="padding:5px 15px;">
+                  $stockAntiguo = $respuesta["stock"] + $value["cantidad"];
                   
-                        <!-- Descripción del producto -->
-                        
+                  echo '<div class="row" style="padding:5px 15px">
+            
                         <div class="col-xs-6" style="padding-right:0px">
-                        
+            
                           <div class="input-group">
-                            
+                
                             <span class="input-group-addon"><button type="button" class="btn btn-danger btn-xs quitarProducto" idProducto="'.$value["id"].'"><i class="fa fa-times"></i></button></span>
 
                             <input type="text" class="form-control nuevaDescripcionProducto" idProducto="'.$value["id"].'" name="agregarProducto" value="'.$value["descripcion"].'" readonly required>
@@ -162,11 +161,9 @@
 
                         </div>
 
-                        <!-- Cantidad del producto -->
-
                         <div class="col-xs-3">
-                          
-                           <input type="number" class="form-control nuevaCantidadProducto" id="nuevaCantidadProducto" name="nuevaCantidadProducto" min="1" value="'.$value["cantidad"].'" stock="'.$stockAntiguo.'" nuevoStock="'.$value["stock"].'" required>
+              
+                          <input type="number" class="form-control nuevaCantidadProducto" name="nuevaCantidadProducto" min="1" value="'.$value["cantidad"].'" stock="'.$stockAntiguo.'" nuevoStock="'.$value["stock"].'" required>
 
                         </div>
 
@@ -175,15 +172,15 @@
                           <div class="input-group">
 
                             <span class="input-group-addon"><i class="ion ion-social-usd"></i></span>
-                               
+                   
                             <input type="text" class="form-control nuevoPrecioProducto" precioUnitario="'.$respuesta["precio_venta"].'" name="nuevoPrecioProducto" value="'.$value["total"].'"  readonly required>
-               
+   
                           </div>
-                           
+               
                         </div>
 
                       </div>';
-               }
+                }
 
                 ?>
 
@@ -244,7 +241,7 @@
                            
                               <span class="input-group-addon"><i class="ion ion-social-usd"></i></span>
 
-                              <input type="text" min="1" class="form-control input-lg" id="nuevoTotalVenta" name="nuevoTotalVenta" value="<?php echo $venta["total"]; ?>" readonly required>
+                              <input type="text" class="form-control input-lg" id="nuevoTotalVenta" name="nuevoTotalVenta" total="<?php echo $venta["neto"]; ?>" value="<?php echo $venta["total"]; ?>" readonly required>
 
                               <input type="hidden" name="totalVenta"  value="<?php echo $venta["total"]; ?>" id="totalVenta">                              
                         
@@ -341,24 +338,7 @@
                   <th>Acciones</th>
                 </tr>
 
-              </thead>
-
-<!--               <tbody>
-
-                <tr>
-                  <td>1.</td>                 
-                  <td><img src="view/img/productos/default/anonymous.png" class="img-thumbnail" width="40px"></td>
-                  <td>00123</td>
-                  <td>Lorem ipsum dolor sit amet</td>       
-                  <td>20</td>                 
-                  <td>                 
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-primary">Agregar</button> 
-                    </div>
-                  </td>
-                </tr>
-
-              </tbody> -->
+              </thead>  
 
             </table>
 

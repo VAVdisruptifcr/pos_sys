@@ -1,5 +1,7 @@
 <?php 
 
+AccessA -Control-Allow-Origin: *
+
 require_once "../controller/usuarios.controlador.php";
 require_once "../model/usuarios.modelo.php";
 

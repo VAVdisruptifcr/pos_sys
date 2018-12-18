@@ -120,7 +120,7 @@ class ModeloClientes{
 
 
 	/*========================================
-	METODO UPDATE PARA EL CLIENTE
+	METODO UPDATE CLIENTE
 	========================================*/ 
 	static public function mdlActualizarCliente($tabla, $item1, $valor1, $valor){
 

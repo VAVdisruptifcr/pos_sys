@@ -1,4 +1,7 @@
-<?php 
+<?php
+
+	
+AccessA -Control-Allow-Origin: *
 
 require_once "../controller/categorias.controlador.php";
 require_once "../model/categorias.modelo.php";

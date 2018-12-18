@@ -1,5 +1,7 @@
 <?php
 
+AccessA -Control-Allow-Origin: *
+
 require_once "../controller/productos.controlador.php";
 require_once "../model/productos.modelo.php";
 
@@ -13,8 +15,16 @@ class TablaProductosVentas{
 
 		$item = null;
 		$valor = null;
+		$orden = "id";
 
-		$productos = ControladorProductos::ctrMostrarProductos($item,$valor);
+		$productos = ControladorProductos::ctrMostrarProductos($item, $valor, $orden);
+
+  		if(count($productos) == 0){
+
+  			echo '{"data": []}';
+
+		  	return;
+  		}		
 
 		$datosJson = '{
 					  "data": [';

@@ -15,7 +15,7 @@ session_start();
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
 <!--=====================================
- PLUGINS DE JQUERY CSS
+ PLUGINS DE CSS
  =====================================-->
   <!-- Bootstrap 3.3.7 -->
   <link rel="stylesheet" href="view/bower_components/bootstrap/dist/css/bootstrap.min.css">
@@ -39,6 +39,9 @@ session_start();
 
   <!-- iCheck for checkboxes and radio inputs -->
   <link rel="stylesheet" href="view/plugins/iCheck/all.css">  
+
+    <!-- DATERANGE PICKER -->
+  <link rel="stylesheet" href="view/bower_components/bootstrap-daterangepicker/daterangepicker.css">  
 
   <!--=====================================
    PLUGINS DE JQUERY 3 JS
@@ -72,6 +75,18 @@ session_start();
 
 <!-- jqueryNumber -->
 <script src="view/plugins/jqueryNumber/jquerynumber.min.js"></script>
+
+<!-- Date range picker -->
+<script src="view/bower_components/moment/min/moment.min.js"></script>
+<script src="view/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+
+<!-- MORRIS JS Chart -->
+<script src="view/bower_components/raphael/raphael.min.js"></script>
+<script src="view/bower_components/morris.js/morris.min.js"></script>
+
+
+<!-- ChartJS -->
+<script src="view/bower_components/chart.js/Chart.js"></script>
 
 </head>
 <!--=====================================
@@ -159,6 +174,7 @@ if(isset($_SESSION["inicioSesion"]) && $_SESSION["inicioSesion"] == "ok"){
 <script src="view/js/productos.js"></script>
 <script src="view/js/clientes.js"></script>
 <script src="view/js/ventas.js"></script>
+<script src="view/js/reportes.js"></script>
 
 </body>
 </html>

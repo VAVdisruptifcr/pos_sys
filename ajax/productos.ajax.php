@@ -1,5 +1,7 @@
 <?php
 
+AccessA -Control-Allow-Origin: *
+
 require_once "../controller/productos.controlador.php";
 require_once "../model/productos.modelo.php";
 
@@ -16,10 +18,10 @@ class AjaxProductos{
 	public function ajaxCrearCodigoProducto(){
 
 		$item = "idCategoria";
-
 		$valor = $this->idCategoria;
+		$orden = "id";
 
-		$respuesta = ControladorProductos::ctrMostrarProductos($item, $valor);
+		$respuesta = ControladorProductos::ctrMostrarProductos($item, $valor, $orden);
 
 		echo json_encode($respuesta);
 
@@ -38,16 +40,18 @@ class AjaxProductos{
 
 			$item = null;
 			$valor = null;
+			$orden = "id";
 			
-			$respuesta = ControladorProductos::ctrMostrarProductos($item, $valor);			
+			$respuesta = ControladorProductos::ctrMostrarProductos($item, $valor, $orden);
 			echo json_encode($respuesta);
 
 		}else if($this->nombreProducto != ""){
 
 			$item = "descripcion";
 			$valor = $this->nombreProducto;
-
-			$respuesta = ControladorProductos::ctrMostrarProductos($item, $valor);
+			$orden = "id";
+			
+			$respuesta = ControladorProductos::ctrMostrarProductos($item, $valor, $orden);
 
 			echo json_encode($respuesta);
 
@@ -55,8 +59,9 @@ class AjaxProductos{
 
 			$item = "id";
 			$valor = $this->idProducto;
-
-			$respuesta = ControladorProductos::ctrMostrarProductos($item, $valor);
+			$orden = "id";
+			
+			$respuesta = ControladorProductos::ctrMostrarProductos($item, $valor, $orden);
 
 			echo json_encode($respuesta);			
 

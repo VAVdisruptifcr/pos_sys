@@ -1,5 +1,7 @@
 <?php
 
+// AccessA -Control-Allow-Origin: *
+
 require_once "../controller/productos.controlador.php";
 require_once "../model/productos.modelo.php";
 
@@ -16,8 +18,9 @@ class TablaProductos{
 
 		$item = null;
 		$valor = null;
+		$orden = "id";
 
-		$productos = ControladorProductos::ctrMostrarProductos($item,$valor);
+		$productos = ControladorProductos::ctrMostrarProductos($item, $valor, $orden);
 
 		$datosJson = '{
 					  "data": [';
@@ -59,7 +62,17 @@ class TablaProductos{
 					TRAEMOS LOS BTNS DE ACCIONES
 					=======================================*/
 
+					if(isset($_GET["perfiloculto"]) && $_GET["perfiloculto"] == "Especial"){
+
+						$botones = "<div class='btn-group'><button class='btn btn-warning btnEditarProducto' idProducto='".$productos[$i]["id"]."' data-toggle='modal' data-target='#modalEditarProducto'><i class='fa fa-pencil'></i></button>";
+
+					}else{
+
+						
 					$botones = "<div class='btn-group'><button class='btn btn-warning btnEditarProducto' idProducto='".$productos[$i]["id"]."' data-toggle='modal' data-target='#modalEditarProducto'><i class='fa fa-pencil'></i></button><button class='btn btn-danger btnEliminarProducto' idProducto='".$productos[$i]["id"]."' codigo='".$productos[$i]["codigo"]."' imagen='".$productos[$i]["imagen"]."' data-toggle='modal' data-target='#modalEliminarProducto'><i class='fa fa-times'></i></button></div>";
+
+					}
+
 
 					  	$datosJson .='[
 					      "'.($i+1).'",

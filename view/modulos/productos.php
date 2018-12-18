@@ -1,3 +1,20 @@
+<?php 
+
+if($_SESSION["perfil"] == "Vendedor"){
+
+  echo '<script>
+
+    window.location = "inicio";
+
+  </script>';
+
+  return;
+
+}
+
+?>
+
+
 <div class="content-wrapper">
   <section class="content-header">
 
@@ -26,7 +43,7 @@
 
       <div class="box-body">
         
-        <table class="table table-bordered table-striped dt-responsive tablaProductos">
+        <table class="table table-bordered table-striped dt-responsive tablaProductos" width="100%">
 
           <thead>
   
@@ -44,53 +61,10 @@
               <th>Acciones</th>
             </tr>
           </thead>
-
-          <!-- <tbody>
-
-            <?php 
-
-            $item=null;
-            $valor=null;
-
-            $productos = ControladorProductos::ctrMostrarProductos($item, $valor);
-
-            foreach($productos as $key => $value){
-              echo '<tr>
-
-              <td>'.($key+1).'</td>
-              <td><img src="view/img/productos/default/anonymous.png" class="img-thumbnail" width="40px"></td>
-              <td>'.$value["codigo"].'</td>
-              <td>'.$value["descripcion"].'</td>';
-
-              $item = "id";
-              $valor = $value["idCategoria"];
-
-              $categoria = ControladorCategorias::ctrMostrarCategorias($item, $valor);
-
-              echo '<td>'.$categoria["categoria"].'</td>
-              <td>'.$value["stock"].'</td>
-              <td>'.$value["precio_compra"].'</td>
-              <td>'.$value["precio_venta"].'</td>
-              <td>'.$value["fecha"].'</td>
-              <td>
-
-                <div class="btn-group">
-
-                  <button class="btn btn-warning"><i class="fa fa-pencil"></i></button>
-                  <button class="btn btn-danger"><i class="fa fa-times"></i></button>
-                  
-                </div>
-                
-              </td>
-              
-            </tr>';
-            }
-
-            ?>           
-
-          </tbody> -->
           
         </table>
+
+        <input type="hidden" value="<?php echo $_SESSION['perfil']; ?>" id="perfilOculto">
 
       </div>
 

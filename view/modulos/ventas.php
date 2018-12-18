@@ -1,3 +1,19 @@
+<?php 
+
+if($_SESSION["perfil"] == "Especial"){
+
+  echo '<script>
+
+    window.location = "inicio";
+
+  </script>';
+
+  return;
+
+}
+
+?>
+
 <div class="content-wrapper">
   <section class="content-header">
 
@@ -23,12 +39,21 @@
             Nueva venta          
           </button>
         </a>
+
+        <button type="button" class="btn btn-default pull-right" id="daterange-btn">
+
+          <span>
+            <i class="fa fa-calendar"></i> Rango de fecha
+            <i class="fa fa-caret-down"></i>
+          </span>
+          
+        </button>
         
       </div>
 
       <div class="box-body">
         
-        <table class="table table-bordered table-striped dt-responsive tablas">
+        <table class="table table-bordered table-striped dt-responsive tablas" width="100%">
 
           <thead>
             <tr>
@@ -49,10 +74,19 @@
 
             <?php
 
-            $item = null;
-            $valor =null;
+            if(isset($_GET["fechaInicial"])){
 
-            $respuesta = ControladorVentas::ctrMostrarVentas($item, $valor);
+              $fechaInicial = $_GET["fechaInicial"];
+              $fechaFinal = $_GET["fechaFinal"];
+
+            }else{
+
+              $fechaInicial = null;
+              $fechaFinal = null;
+
+            }
+
+            $respuesta = ControladorVentas::ctrRangoFechasVentas($fechaInicial, $fechaFinal);
 
             foreach ($respuesta as $key => $value) {              
 
@@ -78,19 +112,30 @@
                     echo'<td>'.$respuestaVendedor["nombre"].'</td>
 
                     <td>'.$value["metodo_pago"].'</td>
-                    <td>'.number_format($value["neto"], 2).'</td>
-                    <td>'.number_format($value["total"], 2).'</td>
+                    <td>$ '.number_format($value["neto"], 2).'</td>
+                    <td>$ '.number_format($value["total"], 2).'</td>
                     <td>'.$value["fecha"].'</td>
                     
                     <td>
 
                       <div class="btn-group">
 
-                        <button class="btn btn-info"><i class="fa fa-print"></i></button>
-                        <button class="btn btn-warning btnEditarVenta" idVenta="'.$value["id"].'"><i class="fa fa-pencil"></i></button>
-                        <button class="btn btn-danger"><i class="fa fa-times"></i></button>
+                      <button class="btn btn-info btnImprimirFactura" codigoVenta="'.$value["codigo"].'">
+
+                          <i class="fa fa-print"></i>
+
+                        </button>';
+
+                      if($_SESSION["perfil"] == "Administrador"){
+
+
+                        echo'<button class="btn btn-warning btnEditarVenta" idVenta="'.$value["id"].'"><i class="fa fa-pencil"></i></button>
                         
-                      </div>
+                        <button class="btn btn-danger btnEliminarVenta" idVenta="'.$value["id"].'"><i class="fa fa-times"></i></button>';
+
+                      }
+                        
+                      echo'</div>
                       
                     </td>
                     
@@ -105,6 +150,13 @@
           
         </table>
 
+        <?php 
+
+        $eliminarVenta = new ControladorVentas();
+        $eliminarVenta -> ctrEliminarVenta();
+
+        ?>
+
       </div>
 
     </div>
@@ -112,3 +164,4 @@
   </section>
   
 </div>
+
